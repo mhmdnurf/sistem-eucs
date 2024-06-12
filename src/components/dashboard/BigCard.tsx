@@ -1,7 +1,7 @@
 export default function BigCard() {
   return (
     <>
-      <div className="bg-sky-200 sm:h-[300px] sm:mx-6 rounded-lg">
+      <div className="bg-slate-200 sm:h-[300px] sm:mx-6 rounded-xl shadow-xl">
         <div className="flex p-6 flex-col">
           <div>
             <h1 className="text-4xl font-semibold text-slate-900 opacity-75">

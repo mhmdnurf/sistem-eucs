@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <div className="flex">
           <SideNav />
-          <div className="w-full">{children}</div>
+          <div className="h-full flex-grow overflow-auto">{children}</div>
         </div>
       </body>
     </html>
