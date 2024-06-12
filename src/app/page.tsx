@@ -1,7 +1,13 @@
+import BigCard from "@/components/dashboard/BigCard";
+import Header from "@/components/Header";
+
 export default function Home() {
   return (
     <>
-      <h1>Hello EUCS</h1>
+      <div className="">
+        <Header title="Dashboard" />
+        <BigCard />
+      </div>
     </>
   );
 }
