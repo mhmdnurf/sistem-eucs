@@ -10,10 +10,7 @@ export default function SideNav() {
       <nav>
         <ul>
           <li className="bg-slate-100 sm:p-4 sm:mx-8 rounded-md shadow-sm sm:my-4">
-            <Link
-              href="/statements"
-              className="flex justify-start items-center "
-            >
+            <Link href="/" className="flex justify-start items-center ">
               <FaHouse className="sm:mr-4 text-slate-800" />
               <span className="text-slate-800 font-medium">Home</span>
             </Link>
@@ -29,7 +26,7 @@ export default function SideNav() {
           </li>
           <li className="sm:p-4 sm:mx-8 rounded-md shadow-sm sm:my-4">
             <Link
-              href="/statements"
+              href="/responden"
               className="flex justify-start items-center "
             >
               <FaPeopleGroup className="sm:mr-4 text-slate-800" />
