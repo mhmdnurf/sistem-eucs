@@ -1,7 +1,22 @@
-export default function Page() {
+import TabelPertanyaan from "@/components/dashboard/TabelPertanyaan";
+import Header from "@/components/Header";
+import { fetchStatements } from "@/lib/statements/data";
+import Link from "next/link";
+
+export default async function Page() {
+  const statements = await fetchStatements();
   return (
     <>
-      <h1>Statements</h1>
+      <Header title="Pertanyaan" />
+      <Link
+        href={"/statements/create"}
+        className="flex mb-2 sm:px-6 sm:py-4 rounded-lg sm:mx-6 bg-green-600 w-fit "
+      >
+        <span className="text-white text-md font-semibold">
+          Tambah Pertanyaan
+        </span>
+      </Link>
+      <TabelPertanyaan hidden="hidden" statements={statements} />
     </>
   );
 }

@@ -1,19 +1,8 @@
 import { sql } from "@vercel/postgres";
-interface Post {
-  id: string;
-  title: string;
-  content: string;
-}
-
-let posts: Post[] = [];
-
-export const getPosts = () => posts;
-
-export const addPost = (post: Post) => {
-  posts.push(post);
-};
+import { unstable_noStore as noStore } from "next/cache";
 
 export async function fetchUsers() {
+  noStore();
   try {
     const data = await sql`SELECT * FROM users`;
     return data.rows;

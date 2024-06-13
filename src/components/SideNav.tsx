@@ -3,11 +3,11 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { FaHouse, FaQuestion, FaPeopleGroup } from "react-icons/fa6";
 export default function SideNav() {
   return (
-    <div className="sm:w-[400px] bg-white border-r h-screen sticky top-0">
+    <div className="bg-white border-r h-screen sticky top-0">
       <h1 className="text-center py-6 font-semibold text-lg text-slate-700">
         Sistem EUCS
       </h1>
-      <nav className="">
+      <nav className="w-[400px]">
         <ul>
           <li className="bg-slate-100 sm:p-4 sm:mx-8 rounded-md shadow-sm sm:my-4">
             <Link href="/" className="flex justify-start items-center ">
