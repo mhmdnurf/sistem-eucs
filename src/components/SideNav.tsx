@@ -1,7 +1,17 @@
+"use client";
+
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { FaSignOutAlt } from "react-icons/fa";
 import { FaHouse, FaQuestion, FaPeopleGroup } from "react-icons/fa6";
+import { FaSignOutAlt } from "react-icons/fa";
+
 export default function SideNav() {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    pathname === href ? "bg-slate-200 shadow-sm" : "";
+
   return (
     <div className="bg-white border-r h-screen sticky top-0">
       <h1 className="text-center py-6 font-semibold text-lg text-slate-700">
@@ -9,13 +19,17 @@ export default function SideNav() {
       </h1>
       <nav className="w-[400px]">
         <ul>
-          <li className="bg-slate-100 sm:p-4 sm:mx-8 rounded-md shadow-sm sm:my-4">
+          <li className={`sm:p-4 sm:mx-8 rounded-md sm:my-4 ${isActive("/")}`}>
             <Link href="/" className="flex justify-start items-center ">
               <FaHouse className="sm:mr-4 text-slate-800" />
               <span className="text-slate-800 font-medium">Home</span>
             </Link>
           </li>
-          <li className="sm:p-4 sm:mx-8 rounded-md sm:my-4">
+          <li
+            className={`sm:p-4 sm:mx-8 rounded-md sm:my-4 ${isActive(
+              "/statements"
+            )}`}
+          >
             <Link
               href="/statements"
               className="flex justify-start items-center "
@@ -24,7 +38,11 @@ export default function SideNav() {
               <span className="text-slate-800 font-medium">Pertanyaan</span>
             </Link>
           </li>
-          <li className="sm:p-4 sm:mx-8 rounded-md sm:my-4">
+          <li
+            className={`sm:p-4 sm:mx-8 rounded-md sm:my-4 ${isActive(
+              "/responden"
+            )}`}
+          >
             <Link
               href="/responden"
               className="flex justify-start items-center "
@@ -33,11 +51,12 @@ export default function SideNav() {
               <span className="text-slate-800 font-medium">Responden</span>
             </Link>
           </li>
-          <li className="sm:p-4 sm:mx-8 rounded-md sm:my-4">
-            <Link
-              href="/statements"
-              className="flex justify-start items-center "
-            >
+          <li
+            className={`sm:p-4 sm:mx-8 rounded-md sm:my-4 ${isActive(
+              "/logout"
+            )}`}
+          >
+            <Link href="/logout" className="flex justify-start items-center ">
               <FaSignOutAlt className="sm:mr-4 text-slate-800" />
               <span className="text-slate-800 font-medium">Logout</span>
             </Link>

@@ -1,4 +1,3 @@
-import { fetchStatements } from "@/lib/statements/data";
 import Link from "next/link";
 import { FaPencil } from "react-icons/fa6";
 
