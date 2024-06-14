@@ -1,10 +1,9 @@
 "use client";
 
-import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import SideNav from "@/components/SideNav";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -20,6 +19,9 @@ export default function RootLayout({
   const hideNav = pathname === "/form" ? "hidden" : "";
   return (
     <html lang="en">
+      <head>
+        <title>Sistem EUCS SIPA</title>
+      </head>
       <body className={poppins.className}>
         <div className="flex">
           <SideNav hidden={hideNav} />
