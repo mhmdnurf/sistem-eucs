@@ -5,7 +5,11 @@ import Link from "next/link";
 import { FaHouse, FaQuestion, FaPeopleGroup } from "react-icons/fa6";
 import { FaSignOutAlt } from "react-icons/fa";
 
-export default function SideNav() {
+type SideNav = {
+  hidden: string;
+};
+
+export default function SideNav({ hidden }: SideNav) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -13,7 +17,7 @@ export default function SideNav() {
     pathname === href ? "bg-slate-200 shadow-sm" : "";
 
   return (
-    <div className="bg-white border-r h-screen sticky top-0">
+    <div className={`bg-white border-r h-screen sticky top-0 ${hidden}`}>
       <h1 className="text-center py-6 font-semibold text-lg text-slate-700">
         Sistem EUCS
       </h1>
