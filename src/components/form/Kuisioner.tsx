@@ -93,6 +93,9 @@ export default function Kuisioner({ statements }: Kuisioner) {
             )
           )}
         </div>
+        <button type="submit" className="bg-slate-700 p-2 rounded mt-4">
+          <span className="text-xl text-white font-semibold">Submit</span>
+        </button>
       </div>
     </>
   );
