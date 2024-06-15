@@ -30,8 +30,6 @@ export default function Page() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    console.log(form);
   };
 
   React.useEffect(() => {
@@ -45,7 +43,7 @@ export default function Page() {
           <Header title="Form Kuisioner" />
           <Instruksi />
         </div>
-        <form onSubmit={handleSubmit} className="mx-20 flex flex-col">
+        <form className="mx-20 flex flex-col">
           <label htmlFor="nama_lengkap">Nama Lengkap</label>
           <input
             type="text"
