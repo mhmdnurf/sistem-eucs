@@ -78,88 +78,116 @@ export default function Page() {
           <Header title="Form Kuisioner" />
           <Instruksi />
         </div>
-        <form onSubmit={handleSubmit} className="mx-20 flex flex-col">
-          <label htmlFor="nama_lengkap">Nama Lengkap</label>
+        <form
+          onSubmit={handleSubmit}
+          className="mx-40 px-16 pt-16 rounded-xl border-4 mb-20 bg-slate-100 flex flex-col justify-center"
+        >
+          <label htmlFor="nama_lengkap" className="font-medium">
+            Nama Lengkap
+          </label>
           <input
             type="text"
             name="nama_lengkap"
             id="nama_lengkap"
-            className="border-2 border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            className="border-2 border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 p-2 mb-4"
             onChange={(e) => setForm({ ...form, nama_lengkap: e.target.value })}
           />
-          <label htmlFor="nim">NIM</label>
+          <label htmlFor="nim" className="font-medium">
+            NIM
+          </label>
           <input
             type="text"
             name="nim"
             id="nim"
-            className="border-2 border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            className="border-2 border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 p-2 mb-4"
             onChange={(e) => setForm({ ...form, nim: e.target.value })}
           />
-          <label htmlFor="jurusan">Jurusan</label>
+          <label htmlFor="jurusan" className="font-medium">
+            Jurusan
+          </label>
           <input
             type="text"
             name="jurusan"
             id="jurusan"
-            className="border-2 border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            className="border-2 border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 p-2 mb-4"
             onChange={(e) => setForm({ ...form, jurusan: e.target.value })}
           />
           {statements.map((statement) => (
             <div key={statement.id}>
-              <p>{statement.statement}</p>
-              <input
-                type="radio"
-                name={`statement-${statement.id}`}
-                id={`sts-${statement.id}`}
-                value="1"
-                onChange={(e) =>
-                  handleResponseChange(statement.id, e.target.value)
-                }
-              />
-              <label htmlFor={`sts-${statement.id}`}>Sangat Tidak Setuju</label>
-              <input
-                type="radio"
-                name={`statement-${statement.id}`}
-                id={`ts-${statement.id}`}
-                value="2"
-                onChange={(e) =>
-                  handleResponseChange(statement.id, e.target.value)
-                }
-              />
-              <label htmlFor={`ts-${statement.id}`}>Tidak Setuju</label>
-              <input
-                type="radio"
-                name={`statement-${statement.id}`}
-                id={`n-${statement.id}`}
-                value="3"
-                onChange={(e) =>
-                  handleResponseChange(statement.id, e.target.value)
-                }
-              />
-              <label htmlFor={`n-${statement.id}`}>Netral</label>
-              <input
-                type="radio"
-                name={`statement-${statement.id}`}
-                id={`s-${statement.id}`}
-                value="4"
-                onChange={(e) =>
-                  handleResponseChange(statement.id, e.target.value)
-                }
-              />
-              <label htmlFor={`s-${statement.id}`}>Setuju</label>
-              <input
-                type="radio"
-                name={`statement-${statement.id}`}
-                id={`st-${statement.id}`}
-                value="5"
-                onChange={(e) =>
-                  handleResponseChange(statement.id, e.target.value)
-                }
-              />
-              <label htmlFor={`st-${statement.id}`}>Sangat Setuju</label>
+              <p className="my-2 font-semibold text-lg">
+                {statement.statement}
+              </p>
+              <div className="flex my-2">
+                <input
+                  type="radio"
+                  name={`statement-${statement.id}`}
+                  id={`sts-${statement.id}`}
+                  value="1"
+                  className="mr-2 w-6 h-6 cursor-pointer border border-slate-200 rounded-full focus:outline-none"
+                  onChange={(e) =>
+                    handleResponseChange(statement.id, e.target.value)
+                  }
+                />
+                <label htmlFor={`sts-${statement.id}`}>
+                  Sangat Tidak Setuju
+                </label>
+              </div>
+              <div className="flex my-2">
+                <input
+                  type="radio"
+                  name={`statement-${statement.id}`}
+                  id={`ts-${statement.id}`}
+                  value="2"
+                  className="mr-2 w-6 h-6 cursor-pointer border border-slate-200 rounded-full focus:outline-none"
+                  onChange={(e) =>
+                    handleResponseChange(statement.id, e.target.value)
+                  }
+                />
+                <label htmlFor={`ts-${statement.id}`}>Tidak Setuju</label>
+              </div>
+              <div className="flex my-2">
+                <input
+                  type="radio"
+                  name={`statement-${statement.id}`}
+                  id={`n-${statement.id}`}
+                  value="3"
+                  className="mr-2 w-6 h-6 cursor-pointer border border-slate-200 rounded-full focus:outline-none"
+                  onChange={(e) =>
+                    handleResponseChange(statement.id, e.target.value)
+                  }
+                />
+                <label htmlFor={`n-${statement.id}`}>Netral</label>
+              </div>
+              <div className="flex my-2">
+                <input
+                  type="radio"
+                  name={`statement-${statement.id}`}
+                  id={`s-${statement.id}`}
+                  value="4"
+                  className="mr-2 w-6 h-6 cursor-pointer border border-slate-200 rounded-full focus:outline-none"
+                  onChange={(e) =>
+                    handleResponseChange(statement.id, e.target.value)
+                  }
+                />
+                <label htmlFor={`s-${statement.id}`}>Setuju</label>
+              </div>
+              <div className="flex my-2">
+                <input
+                  type="radio"
+                  name={`statement-${statement.id}`}
+                  id={`st-${statement.id}`}
+                  value="5"
+                  className="mr-2 w-6 h-6 cursor-pointer border border-slate-200 rounded-full focus:outline-none"
+                  onChange={(e) =>
+                    handleResponseChange(statement.id, e.target.value)
+                  }
+                />
+                <label htmlFor={`st-${statement.id}`}>Sangat Setuju</label>
+              </div>
             </div>
           ))}
-          <button type="submit">
-            <span>Submit</span>
+          <button type="submit" className="p-3 bg-slate-700 my-8 rounded">
+            <span className="text-white font-semibold">Submit</span>
           </button>
         </form>
       </div>
