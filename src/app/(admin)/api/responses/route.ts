@@ -9,7 +9,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     await addResponses(userDetails, responses);
 
     return NextResponse.json(
-      { message: "Data berhasil ditambahkan", data: userDetails },
+      { message: "Data berhasil ditambahkan", data: userDetails, responses },
       { status: 200 }
     );
   } catch (error) {
