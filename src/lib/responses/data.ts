@@ -8,10 +8,8 @@ interface User {
 }
 
 interface Response {
-  id: number;
   statement_id: number;
   response: any;
-  responses: any;
 }
 
 export async function addResponses(userDetails: User, responses: Response[]) {
@@ -30,8 +28,8 @@ export async function addResponses(userDetails: User, responses: Response[]) {
     // Insert each response into the responses table
     for (let response of responses) {
       await sql`
-        INSERT INTO responses (id, user_id, statement_id, response)
-        VALUES (${response.id}, ${userId}, ${response.statement_id}, ${response.response})
+        INSERT INTO responses (user_id, statement_id, response)
+        VALUES (${userId}, ${response.statement_id}, ${response.response})
       `;
     }
   } catch (error) {
