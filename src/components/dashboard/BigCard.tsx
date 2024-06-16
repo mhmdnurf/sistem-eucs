@@ -1,4 +1,4 @@
-export default function BigCard() {
+export default function BigCard({ jumlah }: { jumlah: number }) {
   return (
     <>
       <div className="bg-slate-200 sm:h-[300px] sm:mx-6 rounded-xl shadow-xl">
@@ -13,7 +13,7 @@ export default function BigCard() {
           </div>
           <div className="sm:mt-24">
             <p className="text-xl opacity-75">Jumlah Responden:</p>
-            <p className="text-4xl font-bold opacity-75">100 Orang</p>
+            <p className="text-4xl font-bold opacity-75">{jumlah} Orang</p>
           </div>
         </div>
       </div>

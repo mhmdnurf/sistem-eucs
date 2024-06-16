@@ -2,7 +2,12 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { FaHouse, FaQuestion, FaPeopleGroup } from "react-icons/fa6";
+import {
+  FaHouse,
+  FaQuestion,
+  FaPeopleGroup,
+  FaChartPie,
+} from "react-icons/fa6";
 import { FaSignOutAlt } from "react-icons/fa";
 
 type SideNav = {
@@ -53,6 +58,16 @@ export default function SideNav({ hidden }: SideNav) {
             >
               <FaPeopleGroup className="sm:mr-4 text-slate-800" />
               <span className="text-slate-800 font-medium">Responden</span>
+            </Link>
+          </li>
+          <li
+            className={`sm:p-4 sm:mx-8 rounded-md sm:my-4 ${isActive(
+              "/hasil"
+            )}`}
+          >
+            <Link href="/hasil" className="flex justify-start items-center ">
+              <FaChartPie className="sm:mr-4 text-slate-800" />
+              <span className="text-slate-800 font-medium">Hasil</span>
             </Link>
           </li>
           <li

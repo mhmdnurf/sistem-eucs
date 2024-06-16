@@ -11,3 +11,14 @@ export async function fetchUsers() {
     throw new Error("Error fetching users");
   }
 }
+
+export async function countUsers() {
+  noStore();
+  try {
+    const data = await sql`SELECT COUNT(*) FROM users`;
+    return data.rows[0].count;
+  } catch (error) {
+    console.error("Database Error: ", error);
+    throw new Error("Error counting users");
+  }
+}

@@ -50,3 +50,33 @@ export async function getResponses() {
     console.error(error);
   }
 }
+
+export async function getResponsesByUserId(userId: number) {
+  noStore();
+  try {
+    // Get all responses from the responses table by user_id
+    const result = await sql`
+      SELECT * FROM responses
+      WHERE user_id = ${userId}
+    `;
+
+    return result.rows;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getStatementById(statementId: number) {
+  noStore();
+  try {
+    // Get a statement by its id
+    const result = await sql`
+      SELECT * FROM statements
+      WHERE id = ${statementId}
+    `;
+
+    return result.rows[0];
+  } catch (error) {
+    console.error(error);
+  }
+}

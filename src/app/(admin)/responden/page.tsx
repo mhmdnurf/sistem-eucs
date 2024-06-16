@@ -11,7 +11,7 @@ export default async function Page() {
       <div className={`bg-white rounded-xl sm:px-6 sm:mb-8`}>
         <div className="flex">
           <h1 className="sm:text-2xl sm:font-semibold text-slate-900 opacity-75 mr-4">
-            Tabel Pertanyaan
+            Tabel Responden
           </h1>
         </div>
         <table className="w-full mt-4">
@@ -33,7 +33,7 @@ export default async function Page() {
                 <td className="p-4 text-slate-900">{item.jurusan}</td>
                 <td className="p-4 text-slate-900">
                   <Link
-                    href={`/responden/${item.id}`}
+                    href={`/responden/${item.id}/jawaban`}
                     className="bg-green-600 p-2 rounded-lg opacity-85 font-medium text-slate-600 flex justify-center items-center hover:transition-all hover:scale-110 sm:mb-2"
                   >
                     <FaEye className="text-white mr-2" />
