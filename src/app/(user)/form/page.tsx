@@ -88,13 +88,13 @@ export default function Page() {
   return (
     <>
       <div className="flex flex-col">
-        <div className="flex justify-center items-center flex-col mb-4">
+        <div className="flex justify-center items-center flex-col">
           <Header title="Form Kuisioner" />
           <Instruksi />
         </div>
         <form
           onSubmit={handleSubmit}
-          className="mx-40 px-16 pt-16 rounded-xl border-4 mb-20 bg-slate-100 flex flex-col justify-center"
+          className="sm:mx-40 sm:px-16 sm:pt-16 mx-6 px-6 pt-6 sm:rounded-xl rounded-lg border-4 mb-20 bg-slate-100 flex flex-col justify-center"
         >
           <label htmlFor="nama_lengkap" className="font-medium">
             Nama Lengkap
@@ -200,7 +200,10 @@ export default function Page() {
               </div>
             </div>
           ))}
-          <button type="submit" className="p-3 bg-slate-700 my-8 rounded">
+          <button
+            type="submit"
+            className="p-3 bg-slate-700 my-8 sm:rounded rounded-lg"
+          >
             <span className="text-white font-semibold">Submit</span>
           </button>
         </form>

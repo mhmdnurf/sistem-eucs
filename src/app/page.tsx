@@ -5,8 +5,10 @@ import { fetchStatementsWithLimit } from "@/lib/statements/data";
 import { countUsers } from "@/lib/users/data";
 
 export default async function Home() {
-  const statements = await fetchStatementsWithLimit();
-  const jumlah = await countUsers();
+  const [statements, jumlah] = await Promise.all([
+    fetchStatementsWithLimit(),
+    countUsers(),
+  ]);
   return (
     <>
       <Header title="Dashboard" />

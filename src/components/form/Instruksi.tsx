@@ -1,7 +1,7 @@
 export default function Instruksi() {
   return (
     <>
-      <div className="bg-slate-100 p-4 rounded-md">
+      <div className="bg-slate-100 sm:p-4 p-6 mx-6 sm:mb-8 mb-6 rounded-md">
         <h1>Poin Penilaian</h1>
         <p className="mb-4">
           Ada lima alternatif untuk menjawab pernyataan dengan keterangan
