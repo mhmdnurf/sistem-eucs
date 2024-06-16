@@ -36,3 +36,17 @@ export async function addResponses(userDetails: User, responses: Response[]) {
     console.error(error);
   }
 }
+
+export async function getResponses() {
+  noStore();
+  try {
+    // Get all responses from the responses table
+    const result = await sql`
+      SELECT * FROM responses
+    `;
+
+    return result.rows;
+  } catch (error) {
+    console.error(error);
+  }
+}

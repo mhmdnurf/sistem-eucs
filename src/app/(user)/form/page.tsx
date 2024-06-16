@@ -2,6 +2,7 @@
 import React from "react";
 import Instruksi from "@/components/form/Instruksi";
 import Header from "@/components/Header";
+import Swal from "sweetalert2";
 
 interface Statements {
   id: number;
@@ -29,7 +30,6 @@ export default function Page() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
       const response = await fetch("/api/responses", {
         method: "POST",
@@ -45,8 +45,22 @@ export default function Page() {
 
       const result = await response.json();
       console.log(result);
+
+      Swal.fire({
+        icon: "success",
+        title: "Terima kasih atas partisipasi anda!",
+        text: "Jawaban anda berhasil disimpan",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       console.error("There was a problem with your fetch operation:", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
     }
   };
 
