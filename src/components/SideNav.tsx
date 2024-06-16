@@ -18,9 +18,12 @@ export default function SideNav({ hidden }: SideNav) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isActive = (href: string) =>
-    pathname === href ? "bg-slate-200 shadow-sm" : "";
-
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === href ? "bg-slate-200 shadow-sm" : "";
+    }
+    return pathname.startsWith(href) ? "bg-slate-200 shadow-sm" : "";
+  };
   return (
     <div className={`bg-white border-r h-screen sticky top-0 ${hidden}`}>
       <h1 className="text-center py-6 font-semibold text-lg text-slate-700">
