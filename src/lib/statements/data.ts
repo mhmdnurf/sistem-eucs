@@ -3,14 +3,14 @@ import { unstable_noStore as noStore } from "next/cache";
 import Swal from "sweetalert2";
 
 interface Statement {
-  variabel: string;
+  variabel_id: string;
   statement: string;
 }
 
 interface Statements {
   id: number;
   statement: string;
-  variabel: string;
+  variabel_id: string;
 }
 
 export async function fetchStatements(): Promise<Statements[]> {
@@ -18,6 +18,21 @@ export async function fetchStatements(): Promise<Statements[]> {
   try {
     const data = await sql`SELECT * FROM statements`;
     return data.rows as Statements[];
+  } catch (error) {
+    console.error("Database Error: ", error);
+    throw new Error("Error fetching statements");
+  }
+}
+
+export async function fetchStatementsWithVariabel() {
+  noStore();
+  try {
+    const data = await sql`
+      SELECT statements.id, statements.statement, variabels.nama_variabel
+      FROM statements
+      JOIN variabels ON statements.variabel_id = variabels.id
+    `;
+    return data.rows;
   } catch (error) {
     console.error("Database Error: ", error);
     throw new Error("Error fetching statements");
@@ -35,31 +50,10 @@ export async function fetchStatementsWithLimit(): Promise<Statements[]> {
   }
 }
 
-export async function addStatement({ variabel, statement }: Statement) {
-  let limit = 0;
-
-  if (variabel === "content") {
-    limit = 3;
-  } else if (variabel === "format") {
-    limit = 2;
-  } else if (variabel === "accuracy") {
-    limit = 2;
-  } else if (variabel === "eout") {
-    limit = 4;
-  } else if (variabel === "kepuasan") {
-    limit = 3;
-  }
-
-  const existingStatements =
-    await sql`SELECT COUNT(*) FROM statements WHERE variabel = ${variabel}`;
-  console.log(existingStatements);
-
-  if (Number(existingStatements.rows[0].count) >= limit) {
-    throw new Error(`Limit exceeded for ${variabel}`);
-  }
-
+export async function addStatement({ variabel_id, statement }: Statement) {
+  noStore();
   try {
-    await sql`INSERT INTO statements (variabel, statement) VALUES (${variabel}, ${statement})`;
+    await sql`INSERT INTO statements (variabel_id, statement) VALUES (${variabel_id}, ${statement})`;
   } catch (error) {
     console.error("Database Error: ", error);
     throw new Error("Error inserting statement");

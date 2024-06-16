@@ -14,10 +14,10 @@ export const GET = async (req: Request, res: Response) => {
 };
 
 export const POST = async (req: Request, res: Response) => {
-  const { variabel, statement } = await req.json();
+  const { variabel_id, statement } = await req.json();
 
   try {
-    const statementData = { variabel, statement };
+    const statementData = { variabel_id, statement };
     await addStatement(statementData);
 
     return NextResponse.json(

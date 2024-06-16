@@ -1,3 +1,4 @@
+import { fetchStatementsWithVariabel } from "@/lib/statements/data";
 import Link from "next/link";
 import { FaPencil } from "react-icons/fa6";
 
@@ -5,21 +6,15 @@ type TabelPertanyaan = {
   hidden?: string;
   marginTop?: string;
   paddingVertical?: string;
-  statements: Statements[];
-};
-
-type Statements = {
-  id: number;
-  statement: string;
-  variabel: string;
 };
 
 export default async function TabelPertanyaan({
   hidden,
   marginTop,
   paddingVertical,
-  statements,
 }: TabelPertanyaan) {
+  const statements = await fetchStatementsWithVariabel();
+
   return (
     <>
       <div className={`bg-white rounded-xl sm:px-6 ${paddingVertical} sm:mb-8`}>
@@ -49,8 +44,8 @@ export default async function TabelPertanyaan({
                 <td className="p-4 text-slate-900">{index + 1}</td>
                 <td className="p-4 text-slate-900">{statement.statement}</td>
                 <td className="p-4 text-slate-900">
-                  {statement.variabel.charAt(0).toUpperCase() +
-                    statement.variabel.slice(1)}
+                  {statement.nama_variabel.charAt(0).toUpperCase() +
+                    statement.nama_variabel.slice(1)}
                 </td>
                 <td className="p-4 text-slate-900">
                   <Link

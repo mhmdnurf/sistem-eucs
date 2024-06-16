@@ -1,10 +1,9 @@
 import TabelPertanyaan from "@/components/dashboard/TabelPertanyaan";
 import Header from "@/components/Header";
-import { fetchStatements } from "@/lib/statements/data";
+import { fetchStatementsWithVariabel } from "@/lib/statements/data";
 import Link from "next/link";
 
 export default async function Page() {
-  const statements = await fetchStatements();
   return (
     <>
       <Header title="Pertanyaan" />
@@ -16,7 +15,7 @@ export default async function Page() {
           Tambah Pertanyaan
         </span>
       </Link>
-      <TabelPertanyaan hidden="hidden" statements={statements} />
+      <TabelPertanyaan hidden="hidden" />
     </>
   );
 }

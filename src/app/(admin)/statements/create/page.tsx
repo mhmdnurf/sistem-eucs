@@ -33,7 +33,7 @@ export default function Page() {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
     const statement = formData.get("statement") as string;
-    const variabel = formData.get("variabel") as string;
+    const variabel = formData.get("variabel_id") as string;
 
     if (!statement || !variabel) {
       Swal.fire({
@@ -47,7 +47,7 @@ export default function Page() {
     try {
       const response = await fetch("/api/statements", {
         method: "POST",
-        body: JSON.stringify({ statement, variabel }),
+        body: JSON.stringify({ statement, variabel_id: variabel }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -91,14 +91,14 @@ export default function Page() {
             className="border-2 rounded-sm p-4 focus:ring-1 focus:outline-none focus:transform focus:ring-slate-300"
           />
           <label
-            htmlFor="variabel"
+            htmlFor="variabel_id"
             className="text-lg font-semibold text-slate-900 my-2"
           >
             Variabel
           </label>
           <select
             className="sm:p-4 bg-white border-2 rounded-sm focus:ring-1 focus:outline-none focus:transform focus:ring-slate-300"
-            name="variabel"
+            name="variabel_id"
           >
             {variabel.map((variabel) => (
               <option key={variabel.id} value={variabel.id}>

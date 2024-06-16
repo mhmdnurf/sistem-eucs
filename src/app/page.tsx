@@ -5,19 +5,12 @@ import { fetchStatementsWithLimit } from "@/lib/statements/data";
 import { countUsers } from "@/lib/users/data";
 
 export default async function Home() {
-  const [statements, jumlah] = await Promise.all([
-    fetchStatementsWithLimit(),
-    countUsers(),
-  ]);
+  const jumlah = await countUsers();
   return (
     <>
       <Header title="Dashboard" />
       <BigCard jumlah={jumlah} />
-      <TabelPernyataan
-        marginTop="sm:mt-6"
-        paddingVertical="sm:py-6"
-        statements={statements}
-      />
+      <TabelPernyataan marginTop="sm:mt-6" paddingVertical="sm:py-6" />
     </>
   );
 }
