@@ -1,12 +1,16 @@
 import Header from "@/components/Header";
+import { getHasilContent } from "@/lib/hasil/data";
 
-export default function Page() {
+export default async function Page() {
   const statements = [
     {
       statement: "Apakah anda suka makan nasi goreng?",
       variabel: "suka_makan",
     },
   ];
+
+  const content = await getHasilContent();
+  console.log(content);
   return (
     <>
       <Header title="Hasil Kuisioner" />

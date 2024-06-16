@@ -3,9 +3,31 @@
 import Header from "@/components/Header";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import React from "react";
 
-const Page = () => {
+interface Variabel {
+  id: number;
+  nama_variabel: string;
+}
+
+export default function Page() {
   const router = useRouter();
+  const [variabel, setVariabel] = React.useState<Variabel[]>([]);
+
+  async function fetchVariabels() {
+    try {
+      const response = await fetch("/api/variabel");
+      const responseData = await response.json();
+      setVariabel(responseData.data);
+      console.log(responseData.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  React.useEffect(() => {
+    fetchVariabels();
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -78,11 +100,12 @@ const Page = () => {
             className="sm:p-4 bg-white border-2 rounded-sm focus:ring-1 focus:outline-none focus:transform focus:ring-slate-300"
             name="variabel"
           >
-            <option value="content">Content</option>
-            <option value="accuracy">Accuracy</option>
-            <option value="format">Format</option>
-            <option value="eout">Ease of Use and Timeliness</option>
-            <option value="kepuasan">Kepuasan Pengguna</option>
+            {variabel.map((variabel) => (
+              <option key={variabel.id} value={variabel.id}>
+                {variabel.nama_variabel.charAt(0).toUpperCase() +
+                  variabel.nama_variabel.slice(1)}
+              </option>
+            ))}
           </select>
           <button
             type="submit"
@@ -94,6 +117,4 @@ const Page = () => {
       </form>
     </>
   );
-};
-
-export default Page;
+}
