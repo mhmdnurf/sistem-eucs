@@ -1,26 +1,20 @@
-import { sql } from "@vercel/postgres"; // Import the join function
+import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
 
-export async function getHasilContent() {
+export async function getAverageRating() {
   noStore();
+  try {
+    const result = await sql`
+      SELECT s.variabel_id, v.nama_variabel, AVG(r.response) AS average_response
+      FROM responses r
+      JOIN statements s ON r.statement_id = s.id
+      JOIN variabels v ON s.variabel_id = v.id
+      GROUP BY s.variabel_id, v.nama_variabel
+    `;
 
-  const content =
-    await sql`SELECT id FROM statements WHERE variabel = ${"content"}`;
-
-  return content.rows;
-}
-
-export async function getAverageContent() {
-  noStore();
-  const variabel_id = 1;
-
-  const query = sql`
-    SELECT s.id, AVG(r.response) AS average_response
-    FROM responses r
-    INNER JOIN statements s ON s.id = r.statement_id
-    WHERE r.variabel_id = ${variabel_id}
-    GROUP BY s.id`;
-  const result = await query;
-
-  console.log("Average Responses:", result.rows);
+    return result.rows;
+  } catch (error) {
+    console.error("Error fetching average content:", error);
+    throw error;
+  }
 }

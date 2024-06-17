@@ -34,44 +34,48 @@ export default function Page() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmit(true);
-    setInterval(() => {
+    try {
+      const response = await fetch("/api/responses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      console.log(result);
+
+      Swal.fire({
+        icon: "success",
+        title: "Terima kasih atas partisipasi anda!",
+        text: "Jawaban anda berhasil disimpan",
+        showConfirmButton: true,
+        timerProgressBar: true,
+        timer: 5000,
+      });
+    } catch (error) {
+      console.error("There was a problem with your fetch operation:", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        showCloseButton: true,
+      });
+    } finally {
       setIsSubmit(false);
-    }, 5000);
-    // try {
-    //   const response = await fetch("/api/responses", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(form),
-    //   });
-
-    //   if (!response.ok) {
-    //     throw new Error("Network response was not ok");
-    //   }
-
-    //   const result = await response.json();
-    //   console.log(result);
-
-    //   Swal.fire({
-    //     icon: "success",
-    //     title: "Terima kasih atas partisipasi anda!",
-    //     text: "Jawaban anda berhasil disimpan",
-    //     showConfirmButton: true,
-    //     timer: 1500,
-    //   });
-    // } catch (error) {
-    //   console.error("There was a problem with your fetch operation:", error);
-
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Oops...",
-    //     text: "Something went wrong!",
-    //     showCloseButton: true,
-    //   });
-    // } finally {
-    //   setIsSubmit(false);
-    // }
+      setForm({
+        nama_lengkap: "",
+        nim: "",
+        jurusan: "",
+        responses: [],
+      });
+    }
   };
 
   const handleResponseChange = (statement_id: number, response: string) => {
@@ -99,7 +103,7 @@ export default function Page() {
     <>
       <div className="flex flex-col">
         <div className="flex justify-center items-center flex-col">
-          <Header title="Form Kuisioner" />
+          <Header title="Form Kuisioner" showButton="hidden" />
           <Instruksi />
         </div>
         <form
@@ -114,6 +118,7 @@ export default function Page() {
             name="nama_lengkap"
             id="nama_lengkap"
             className="border-2 border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 p-2 mb-4"
+            value={form.nama_lengkap}
             onChange={(e) => setForm({ ...form, nama_lengkap: e.target.value })}
           />
           <label htmlFor="nim" className="font-medium">
@@ -124,6 +129,7 @@ export default function Page() {
             name="nim"
             id="nim"
             className="border-2 border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 p-2 mb-4"
+            value={form.nim}
             onChange={(e) => setForm({ ...form, nim: e.target.value })}
           />
           <label htmlFor="jurusan" className="font-medium">
@@ -134,6 +140,7 @@ export default function Page() {
             name="jurusan"
             id="jurusan"
             className="border-2 border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 p-2 mb-4"
+            value={form.jurusan}
             onChange={(e) => setForm({ ...form, jurusan: e.target.value })}
           />
           <Suspense fallback={<Loading />}>

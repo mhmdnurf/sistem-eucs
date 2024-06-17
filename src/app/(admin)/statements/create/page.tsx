@@ -75,7 +75,11 @@ export default function Page() {
 
   return (
     <>
-      <Header title="Tambah Pertanyaan" />
+      <Header
+        title="Tambah Pertanyaan"
+        routeName="/statements"
+        marginRight="mr-2"
+      />
       <form onSubmit={handleSubmit} className="mx-6 border-4 p-10 rounded-lg">
         <div className="flex flex-col">
           <label

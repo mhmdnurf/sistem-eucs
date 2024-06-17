@@ -69,10 +69,12 @@ export async function getResponsesByUserId(userId: number) {
 export async function getStatementById(statementId: number) {
   noStore();
   try {
-    // Get a statement by its id
+    // Get a statement by its id and join with the variables table to get nama_variabel
     const result = await sql`
-      SELECT * FROM statements
-      WHERE id = ${statementId}
+      SELECT s.*, v.nama_variabel
+      FROM statements s
+      JOIN variabels v ON s.variabel_id = v.id
+      WHERE s.id = ${statementId}
     `;
 
     return result.rows[0];

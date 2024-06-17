@@ -7,7 +7,7 @@ export default async function Page() {
   const users = await fetchUsers();
   return (
     <>
-      <Header title="Daftar Responden" />
+      <Header title="Daftar Responden" showButton="hidden" />
       <div className={`bg-white rounded-xl sm:px-6 sm:mb-8`}>
         <div className="flex">
           <h1 className="sm:text-2xl sm:font-semibold text-slate-900 opacity-75 mr-4">

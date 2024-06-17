@@ -8,7 +8,7 @@ export default async function Home() {
   const jumlah = await countUsers();
   return (
     <>
-      <Header title="Dashboard" />
+      <Header title="Dashboard" showButton="hidden" />
       <BigCard jumlah={jumlah} />
       <TabelPernyataan marginTop="sm:mt-6" paddingVertical="sm:py-6" />
     </>
