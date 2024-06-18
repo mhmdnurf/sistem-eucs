@@ -7,6 +7,7 @@ import {
   FaQuestion,
   FaPeopleGroup,
   FaChartPie,
+  FaDna,
 } from "react-icons/fa6";
 import { FaSignOutAlt } from "react-icons/fa";
 
@@ -35,6 +36,19 @@ export default function SideNav({ hidden }: SideNav) {
             <Link href="/" className="flex justify-start items-center ">
               <FaHouse className="sm:mr-4 text-slate-800" />
               <span className="text-slate-800 font-medium">Home</span>
+            </Link>
+          </li>
+          <li
+            className={`sm:p-4 sm:mx-8 rounded-md sm:my-4 ${isActive(
+              "/karakteristik"
+            )}`}
+          >
+            <Link
+              href="/karakteristik"
+              className="flex justify-start items-center "
+            >
+              <FaDna className="sm:mr-4 text-slate-800" />
+              <span className="text-slate-800 font-medium">Karakteristik</span>
             </Link>
           </li>
           <li

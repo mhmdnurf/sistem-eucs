@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "variabel_id": 1,
+        "statement": "Apakah informasi yang tersedia pada aplikasi SIPA sudah sesuai dengan yang anda cari?",
+        "timestamp": "2024-06-16 11:41:48.114013"
+    },
+    {
+        "id": 3,
+        "variabel_id": 1,
+        "statement": "Apakah informasi aplikasi SIPA sudah lengkap?",
+        "timestamp": "2024-06-17 11:22:20.553483"
+    },
+    {
+        "id": 4,
+        "variabel_id": 2,
+        "statement": "Apakah aplikasi SIPA sudah memberikan informasi yang benar dan akurat?",
+        "timestamp": "2024-06-17 11:22:31.690823"
+    },
+    {
+        "id": 5,
+        "variabel_id": 2,
+        "statement": "Apakah aplikasi SIPA sering mengalami gangguan?",
+        "timestamp": "2024-06-18 08:48:55.440794"
+    },
+    {
+        "id": 6,
+        "variabel_id": 3,
+        "statement": "Apakah tampilan aplikasi SIPA menarik?",
+        "timestamp": "2024-06-18 08:49:17.7255"
+    },
+    {
+        "id": 7,
+        "variabel_id": 3,
+        "statement": "Apakah desain tampilan menu dan link pada aplikasi SIPA sudah jelas dan tersusun dengan baik?",
+        "timestamp": "2024-06-18 08:49:47.716574"
+    },
+    {
+        "id": 9,
+        "variabel_id": 4,
+        "statement": "Apakah aplikasi SIPA dibutuhkan di kampus?",
+        "timestamp": "2024-06-18 08:50:20.574541"
+    },
+    {
+        "id": 10,
+        "variabel_id": 4,
+        "statement": "Apakah aplikasi SIPA mudah diakses?",
+        "timestamp": "2024-06-18 08:50:32.588275"
+    },
+    {
+        "id": 12,
+        "variabel_id": 5,
+        "statement": "Apakah anda puas menggunakan aplikasi SIPA?",
+        "timestamp": "2024-06-18 08:51:06.026573"
+    },
+    {
+        "id": 13,
+        "variabel_id": 5,
+        "statement": "Apakah produk yang ditawarkan juga sesuai dengan kebutuhan?",
+        "timestamp": "2024-06-18 08:51:27.69056"
+    },
+    {
+        "id": 14,
+        "variabel_id": 5,
+        "statement": "Apakah layanan aplikasi SIPA sudah memenuhi kebutuhan?",
+        "timestamp": "2024-06-18 08:51:49.863406"
+    }
+]

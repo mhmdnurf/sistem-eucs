@@ -69,12 +69,12 @@ export default function Page() {
       });
     } finally {
       setIsSubmit(false);
-      setForm({
-        nama_lengkap: "",
-        nim: "",
-        jurusan: "",
-        responses: [],
-      });
+      // setForm({
+      //   nama_lengkap: "",
+      //   nim: "",
+      //   jurusan: "",
+      //   responses: [],
+      // });
     }
   };
 
