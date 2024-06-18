@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const hideNav = pathname === "/form" || "/login" ? "hidden" : "";
+  const hideNav = pathname === "/form" ? "hidden" : "";
   return (
     <html lang="en">
       <head>
