@@ -1,4 +1,7 @@
-export default function BigCard({ jumlah }: { jumlah: number }) {
+import { countUsers } from "@/lib/users/data";
+
+export default async function BigCard({ jumlah }: { jumlah: number }) {
+  // const jumlah = await countUsers();
   return (
     <>
       <div className="sm:h-[300px] sm:mx-6 rounded-xl shadow-xl border bg-[url('/logo.jpeg')] bg-cover bg-center bg-no-repeat brightness-75">

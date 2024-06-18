@@ -3,7 +3,7 @@
 import React from "react";
 import Header from "@/components/login/Header";
 import { loginWithEmail } from "@/lib/auth/auth";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function Page() {
     e.preventDefault();
     try {
       await loginWithEmail(email, password);
-      router.push("/");
+      // router.push("/");
     } catch (error) {
       console.error("Login error", error);
     }
