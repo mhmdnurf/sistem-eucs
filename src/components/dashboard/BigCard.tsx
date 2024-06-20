@@ -1,10 +1,9 @@
 import { countUsers } from "@/lib/users/data";
 
 export default async function BigCard({ jumlah }: { jumlah: number }) {
-  // const jumlah = await countUsers();
   return (
     <>
-      <div className="sm:h-[300px] sm:mx-6 rounded-xl shadow-xl border bg-[url('/logo.jpeg')] bg-cover bg-center bg-no-repeat brightness-75">
+      <div className="sm:h-[300px] sm:mx-6 rounded-xl shadow-sm border bg-[url('/logo.jpeg')] bg-center bg-no-repeat brightness-95">
         <div className="flex p-6 flex-col">
           <div className="">
             <h1 className="text-4xl font-semibold opacity-75">

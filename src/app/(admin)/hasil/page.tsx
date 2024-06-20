@@ -34,7 +34,7 @@ export default async function Page() {
                     String(item.nama_variabel).slice(1)}
                 </td>
                 <td className="p-4 text-slate-900 text-center">
-                  {parseFloat(item.average_response)}
+                  {parseFloat(item.average_response).toFixed(2)}
                 </td>
               </tr>
             ))}
