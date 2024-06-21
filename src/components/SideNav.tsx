@@ -86,17 +86,7 @@ export default function SideNav({ hidden }: SideNav) {
               <FaChartPie className="sm:mr-4 text-slate-800" />
               <span className="text-slate-800 font-medium">Hasil</span>
             </Link>
-          </li>
-          <li
-            className={`sm:p-4 sm:mx-8 rounded-md sm:my-4 ${isActive(
-              "/logout"
-            )}`}
-          >
-            <Link href="/logout" className="flex justify-start items-center ">
-              <FaSignOutAlt className="sm:mr-4 text-slate-800" />
-              <span className="text-slate-800 font-medium">Logout</span>
-            </Link>
-          </li>
+          </li>{" "}
         </ul>
       </nav>
     </div>
