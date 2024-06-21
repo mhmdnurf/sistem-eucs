@@ -5,6 +5,7 @@ interface Header {
   marginRight?: string;
   routeName?: string;
   showButton?: string;
+  textColor?: string;
 }
 
 export default function Header({
@@ -12,14 +13,17 @@ export default function Header({
   marginRight,
   routeName,
   showButton,
+  textColor,
 }: Header) {
   return (
     <>
       <div className="p-6 flex">
-        <h1 className={`text-3xl font-semibold ${marginRight}`}>{title}</h1>
+        <h1 className={`text-3xl font-semibold ${marginRight} ${textColor}`}>
+          {title}
+        </h1>
         <Link
           href={`${routeName}`}
-          className={`bg-blue-100 sm:p-2 rounded-lg opacity-85 font-medium text-slate-600 flex justify-center items-center hover:transition-all hover:scale-110 ${showButton}`}
+          className={`bg-blue-100 sm:p-2 rounded-lg opacity-85 font-medium  flex justify-center items-center hover:transition-all hover:scale-110 ${showButton}`}
         >
           Kembali
         </Link>

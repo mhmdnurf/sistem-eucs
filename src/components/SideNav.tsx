@@ -26,8 +26,8 @@ export default function SideNav({ hidden }: SideNav) {
     return pathname.startsWith(href) ? "bg-slate-200 shadow-sm" : "";
   };
   return (
-    <div className={`bg-white border-r h-screen sticky top-0 ${hidden}`}>
-      <h1 className="text-center py-6 font-semibold text-lg text-slate-700">
+    <div className={`bg-blue-500 border-r h-screen sticky top-0 ${hidden}`}>
+      <h1 className="text-center py-6 font-bold text-lg text-white">
         Sistem EUCS
       </h1>
       <nav className="w-[400px]">

@@ -11,7 +11,7 @@ export default async function Home() {
   ]);
   return (
     <>
-      <Header title="Dashboard" showButton="hidden" />
+      <Header title="Dashboard" showButton="hidden" textColor="text-blue-500" />
       <BigCard jumlah={jumlah} />
       <TabelPernyataan
         marginTop="sm:mt-6"
