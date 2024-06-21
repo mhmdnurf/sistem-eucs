@@ -4,6 +4,7 @@ import { fetchStatementsWithVariabel } from "@/lib/statements/data";
 import Link from "next/link";
 
 export default async function Page() {
+  const statements = await fetchStatementsWithVariabel();
   return (
     <>
       <Header title="Pertanyaan" showButton="hidden" />
@@ -15,7 +16,7 @@ export default async function Page() {
           Tambah Pertanyaan
         </span>
       </Link>
-      <TabelPertanyaan hidden="hidden" />
+      <TabelPertanyaan hidden="hidden" statements={statements} />
     </>
   );
 }

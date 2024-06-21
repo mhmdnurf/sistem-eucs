@@ -23,17 +23,16 @@ export async function countUsers() {
   }
 }
 
-export async function countJurusanPerkapalan() {
+export async function countTiapJurusan() {
   noStore();
-  const namaJurusan = [
-    "Teknik Informatika",
-    "Teknik Perkapalan",
-    "Teknik Elektro",
-  ];
   try {
-    const data =
-      await sql`SELECT COUNT(jurusan) FROM users WHERE jurusan = ${namaJurusan[2]}`;
-    return data.rows[0].count;
+    const data = await sql`
+      SELECT LOWER(jurusan) as jurusan, COUNT(*) as jumlah
+      FROM users
+      GROUP BY LOWER(jurusan)
+      ORDER BY LOWER(jurusan) ASC
+    `;
+    return data.rows;
   } catch (error) {
     console.error("Database Error: ", error);
     throw new Error("Error counting jurusan");

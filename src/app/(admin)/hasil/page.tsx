@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import { getAverageRating } from "@/lib/hasil/data";
 
 export default async function Page() {
-  // Fetch the average content data from your database
   const content = await getAverageRating();
   console.log(content);
 
@@ -20,6 +19,11 @@ export default async function Page() {
             <tr className="bg-slate-200">
               <th className="text-center p-4 text-slate-900">No</th>
               <th className="text-center p-4 text-slate-900">Variabel</th>
+              <th className="text-center p-4 text-slate-900">STS</th>
+              <th className="text-center p-4 text-slate-900">TS</th>
+              <th className="text-center p-4 text-slate-900">N</th>
+              <th className="text-center p-4 text-slate-900">S</th>
+              <th className="text-center p-4 text-slate-900">SS</th>
               <th className="p-4 text-slate-900 text-center">
                 Nilai Rata-Rata
               </th>
@@ -33,6 +37,11 @@ export default async function Page() {
                   {String(item.nama_variabel).charAt(0).toUpperCase() +
                     String(item.nama_variabel).slice(1)}
                 </td>
+                <td className="p-4 text-slate-900 text-center">{item.sts}</td>
+                <td className="p-4 text-slate-900 text-center">{item.ts}</td>
+                <td className="p-4 text-slate-900 text-center">{item.n}</td>
+                <td className="p-4 text-slate-900 text-center">{item.s}</td>
+                <td className="p-4 text-slate-900 text-center">{item.ss}</td>
                 <td className="p-4 text-slate-900 text-center">
                   {parseFloat(item.average_response).toFixed(2)}
                 </td>

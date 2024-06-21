@@ -2,7 +2,6 @@
 
 import React from "react";
 import Header from "@/components/login/Header";
-import { loginWithEmail } from "@/lib/auth/auth";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
@@ -14,7 +13,7 @@ export default function Page() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await loginWithEmail(email, password);
+      console.log("Email", email);
       // router.push("/");
     } catch (error) {
       console.error("Login error", error);

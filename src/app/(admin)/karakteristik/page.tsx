@@ -1,13 +1,9 @@
 import Header from "@/components/Header";
-import { countJurusanPerkapalan } from "@/lib/users/data";
+import { countTiapJurusan } from "@/lib/users/data";
 
 export default async function Karakteristik() {
-  const jurusan = [
-    { jurusan: "Teknik Informatika", jumlah: 10 },
-    { jurusan: "Sistem Informasi", jumlah: 10 },
-    { jurusan: "Teknik Elektro", jumlah: 10 },
-  ];
-  const perkapalan = await Promise.all([countJurusanPerkapalan()]);
+  const jurusan = await countTiapJurusan();
+
   return (
     <div>
       <Header title="Karakteristik Responden" showButton="hidden" />
@@ -29,7 +25,12 @@ export default async function Karakteristik() {
             {jurusan.map((item, index) => (
               <tr key={index} className="border-b-2 border-slate-100">
                 <td className="p-4 text-slate-900">{index + 1}</td>
-                <td className="p-4 text-slate-900">{item.jurusan}</td>
+                <td className="p-4 text-slate-900">
+                  {String(item.jurusan)
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}
+                </td>
                 <td className="p-4 text-slate-900">{item.jumlah}</td>
               </tr>
             ))}

@@ -6,15 +6,22 @@ type TabelPertanyaan = {
   hidden?: string;
   marginTop?: string;
   paddingVertical?: string;
+  statements: Statements[];
 };
+
+interface Statements {
+  id: number;
+  statement: string;
+  variabel_id: string;
+  nama_variabel: string;
+}
 
 export default async function TabelPertanyaan({
   hidden,
   marginTop,
   paddingVertical,
+  statements,
 }: TabelPertanyaan) {
-  const statements = await fetchStatementsWithVariabel();
-
   return (
     <>
       <div className={`bg-white rounded-xl sm:px-6 ${paddingVertical} sm:mb-8`}>
