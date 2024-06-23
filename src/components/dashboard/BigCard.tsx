@@ -3,10 +3,10 @@ import { countUsers } from "@/lib/users/data";
 export default async function BigCard({ jumlah }: { jumlah: number }) {
   return (
     <>
-      <div className="sm:h-[300px] sm:mx-6 rounded-xl shadow-sm border bg-[url('/logo.jpeg')] bg-center bg-no-repeat brightness-95">
+      <div className="sm:h-[300px] sm:mx-6 mx-4 rounded-xl shadow-sm border bg-[url('/logo.jpeg')] bg-center bg-no-repeat brightness-95">
         <div className="flex p-6 flex-col">
           <div className="">
-            <h1 className="text-4xl font-semibold opacity-75">
+            <h1 className="sm:text-4xl text-2xl font-semibold opacity-75">
               Selamat datang kembali,
             </h1>
             <h1 className="text-2xl font-semibold opacity-75">Admin!</h1>

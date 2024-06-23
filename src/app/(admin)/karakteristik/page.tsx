@@ -7,9 +7,9 @@ export default async function Karakteristik() {
   return (
     <div>
       <Header title="Karakteristik Responden" showButton="hidden" />
-      <div className={`bg-white rounded-xl sm:px-6 sm:py-4 sm:mb-8`}>
+      <div className={`bg-white rounded-xl sm:px-6 px-4 py-2 sm:py-4 sm:mb-8`}>
         <div className={`flex`}>
-          <h1 className="sm:text-2xl sm:font-semibold text-slate-900 opacity-75 mr-4">
+          <h1 className="sm:text-2xl text-xl font-semibold text-slate-900 opacity-75 mr-4">
             Tabel Karakteristik
           </h1>
         </div>

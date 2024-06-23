@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import SideNav from "@/components/SideNav";
 import { usePathname } from "next/navigation";
+import BottomNav from "@/components/BottomNav";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -23,9 +24,12 @@ export default function RootLayout({
         <title>Sistem EUCS SIPA</title>
       </head>
       <body className={poppins.className}>
-        <div className="flex">
+        <div className="lg:flex">
           <SideNav hidden={hideNav} />
-          <div className="h-full flex-grow overflow-auto">{children}</div>
+          <div className="lg:h-full flex-grow overflow-auto">{children}</div>
+          <div className="block lg:hidden">
+            <BottomNav />
+          </div>
         </div>
       </body>
     </html>

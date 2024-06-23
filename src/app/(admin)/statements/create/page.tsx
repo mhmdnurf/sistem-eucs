@@ -80,7 +80,10 @@ export default function Page() {
         routeName="/statements"
         marginRight="mr-2"
       />
-      <form onSubmit={handleSubmit} className="mx-6 border-4 p-10 rounded-lg">
+      <form
+        onSubmit={handleSubmit}
+        className="sm:mx-6 mx-4 border-4 sm:p-10 p-6 rounded-lg"
+      >
         <div className="flex flex-col">
           <label
             htmlFor="statement"
@@ -92,7 +95,7 @@ export default function Page() {
             type="text"
             id="statement"
             name="statement"
-            className="border-2 rounded-sm p-4 focus:ring-1 focus:outline-none focus:transform focus:ring-slate-300"
+            className="border-2 rounded-sm sm:p-4 p-2 focus:ring-1 focus:outline-none focus:transform focus:ring-slate-300"
           />
           <label
             htmlFor="variabel_id"
@@ -101,7 +104,7 @@ export default function Page() {
             Variabel
           </label>
           <select
-            className="sm:p-4 bg-white border-2 rounded-sm focus:ring-1 focus:outline-none focus:transform focus:ring-slate-300"
+            className="sm:p-4 p-2 bg-white border-2 rounded-sm focus:ring-1 focus:outline-none focus:transform focus:ring-slate-300"
             name="variabel_id"
           >
             {variabel.map((variabel) => (
@@ -113,7 +116,7 @@ export default function Page() {
           </select>
           <button
             type="submit"
-            className="mt-6 bg-slate-700 sm:p-4 rounded-lg focus:ring-4 focus:transform focus:ring-slate-300"
+            className="sm:mt-6 mt-4 bg-slate-700 sm:p-4 p-2 rounded-lg focus:ring-4 focus:transform focus:ring-slate-300"
           >
             <span className="text-lg text-white font-semibold">Submit</span>
           </button>

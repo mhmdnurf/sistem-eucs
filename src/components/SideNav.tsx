@@ -9,7 +9,6 @@ import {
   FaChartPie,
   FaDna,
 } from "react-icons/fa6";
-import { FaSignOutAlt } from "react-icons/fa";
 
 type SideNav = {
   hidden: string;
@@ -26,7 +25,9 @@ export default function SideNav({ hidden }: SideNav) {
     return pathname.startsWith(href) ? "bg-slate-200 shadow-sm" : "";
   };
   return (
-    <div className={`bg-blue-500 border-r h-screen sticky top-0 ${hidden}`}>
+    <div
+      className={`bg-blue-500 border-r h-screen sticky top-0 ${hidden} hidden lg:block`}
+    >
       <h1 className="text-center py-6 font-bold text-lg text-white">
         Sistem EUCS
       </h1>

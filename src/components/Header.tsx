@@ -17,15 +17,17 @@ export default function Header({
 }: Header) {
   return (
     <>
-      <div className="p-6 flex">
-        <h1 className={`text-3xl font-semibold ${marginRight} ${textColor}`}>
+      <div className="sm:p-6 p-4 flex">
+        <h1
+          className={`sm:text-3xl text-2xl font-semibold ${marginRight} ${textColor}`}
+        >
           {title}
         </h1>
         <Link
           href={`${routeName}`}
-          className={`bg-blue-100 sm:p-2 rounded-lg opacity-85 font-medium  flex justify-center items-center hover:transition-all hover:scale-110 ${showButton}`}
+          className={`bg-blue-100 sm:p-2 px-2 rounded-lg opacity-85 font-medium  flex justify-center items-center hover:transition-all hover:scale-110 ${showButton}`}
         >
-          Kembali
+          <span className="text-sm">Kembali</span>
         </Link>
       </div>
     </>

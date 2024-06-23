@@ -10,7 +10,7 @@ export default async function Page() {
       <Header title="Pertanyaan" showButton="hidden" />
       <Link
         href={"/statements/create"}
-        className="flex mb-2 sm:px-6 sm:py-4 rounded-lg sm:mx-6 bg-green-600 w-fit "
+        className="flex mb-2 sm:px-6 px-4 sm:py-4 py-2 rounded-lg sm:mx-6 mx-4 bg-green-600 w-fit"
       >
         <span className="text-white text-md font-semibold">
           Tambah Pertanyaan
