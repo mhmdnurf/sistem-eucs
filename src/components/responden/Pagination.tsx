@@ -40,9 +40,9 @@ export default function Pagination({ totalPages, hidePagination }: Pagination) {
         {currentPage < (totalPages || 0) ? (
           <Link
             href={createPageURL(currentPage + 1)}
-            className="p-1 sm:p2 bg-blue-500 rounded w-24 text-center"
+            className="p-1 sm:p-2 bg-blue-500 rounded w-24 text-center"
           >
-            <span className="text-white font-semibold text-md">Next</span>
+            <span className="text-white font-semibold">Next</span>
           </Link>
         ) : (
           <div className="flex justify-center items-center">
