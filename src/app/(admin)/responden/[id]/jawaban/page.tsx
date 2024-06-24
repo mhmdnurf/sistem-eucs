@@ -1,16 +1,13 @@
 import Header from "@/components/Header";
 import { getResponsesByUserId, getStatementById } from "@/lib/responses/data";
 import Link from "next/link";
-import { parse } from "path";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
-  const responses = (await getResponsesByUserId(parseInt(id))) ?? [];
+  const responses = (await getResponsesByUserId(Number(id))) ?? [];
   const statements = await Promise.all(
     responses.map((response) => getStatementById(response.statement_id))
   );
-
-  console.log(statements);
 
   return (
     <>
@@ -37,19 +34,19 @@ export default async function Page({ params }: { params: { id: string } }) {
             </tr>
           </thead>
           <tbody>
-            {responses.map((response, index) => (
+            {responses.map((item, index) => (
               <tr key={index} className="border-b-2 border-slate-100">
                 <td className="p-4 text-slate-900">{index + 1}</td>
                 <td className="p-4 text-slate-900">
                   {statements[index]?.statement}
                 </td>
-                <td className="p-4 text-slate-900">
+                <td className="p-4 text-slate-900 text-nowrap sm:text-wrap">
                   {String(statements[index]?.nama_variabel)
-                    .charAt(0)
-                    .toUpperCase() +
-                    String(statements[index]?.nama_variabel).slice(1)}
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}
                 </td>
-                <td className="p-4 text-slate-900">{response.response}</td>
+                <td className="p-4 text-slate-900">{item.response}</td>
               </tr>
             ))}
           </tbody>

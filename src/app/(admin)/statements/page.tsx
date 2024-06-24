@@ -1,10 +1,19 @@
 import TabelPertanyaan from "@/components/dashboard/TabelPertanyaan";
 import Header from "@/components/Header";
-import { fetchStatementsWithVariabel } from "@/lib/statements/data";
+import {
+  fetchStatementsPage,
+  fetchStatementsWithVariabel,
+} from "@/lib/statements/data";
 import Link from "next/link";
 
-export default async function Page() {
-  const statements = await fetchStatementsWithVariabel();
+export default async function Page({
+  searchParams,
+}: {
+  searchParams?: { page?: number };
+}) {
+  const currentPage = searchParams?.page || 1;
+  const statements = await fetchStatementsWithVariabel(currentPage);
+  const { totalPages, ITEMS_PER_PAGE } = await fetchStatementsPage();
   return (
     <>
       <Header title="Pertanyaan" showButton="hidden" />
@@ -16,7 +25,13 @@ export default async function Page() {
           Tambah Pertanyaan
         </span>
       </Link>
-      <TabelPertanyaan hidden="hidden" statements={statements} />
+      <TabelPertanyaan
+        hidden="hidden"
+        statements={statements}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        ITEMS_PER_PAGE={ITEMS_PER_PAGE}
+      />
     </>
   );
 }
