@@ -25,6 +25,16 @@ export default function Page() {
   const [isSubmit, setIsSubmit] = React.useState<boolean>(false);
   const [form, setForm] = React.useState<Form>({ responses: [] });
 
+  const isEveryStatementAnswered = statements.every((statement) =>
+    form.responses.some((response) => response.statement_id === statement.id)
+  );
+
+  const isFormIncomplete =
+    !form.nama_lengkap ||
+    !form.nim ||
+    !form.jurusan ||
+    !isEveryStatementAnswered;
+
   async function getStatements() {
     const data = await fetch("/api/statements");
     const response = await data.json();
@@ -69,12 +79,12 @@ export default function Page() {
       });
     } finally {
       setIsSubmit(false);
-      // setForm({
-      //   nama_lengkap: "",
-      //   nim: "",
-      //   jurusan: "",
-      //   responses: [],
-      // });
+      setForm({
+        nama_lengkap: "",
+        nim: "",
+        jurusan: "",
+        responses: [],
+      });
     }
   };
 
@@ -222,6 +232,7 @@ export default function Page() {
           <button
             type="submit"
             className="p-3 bg-slate-700 my-8 sm:rounded rounded-lg"
+            disabled={isFormIncomplete || isSubmit}
           >
             <span className="text-white font-semibold">
               {isSubmit ? (
