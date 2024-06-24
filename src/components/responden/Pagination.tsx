@@ -21,17 +21,17 @@ export default function Pagination({ totalPages, hidePagination }: Pagination) {
 
   return (
     <>
-      <div className={`flex space-x-4 sm:mt-4 ${hidePagination}`}>
+      <div className={`flex space-x-4 sm:mt-4 mt-6 ${hidePagination}`}>
         {currentPage > 1 ? (
           <Link
             href={createPageURL(currentPage - 1)}
-            className="sm:p-2 bg-blue-500 rounded-md sm:w-24 text-center"
+            className="sm:p-2 p-1 bg-blue-500 rounded-md w-24 text-center"
           >
             <span className="text-white font-semibold">Previous</span>
           </Link>
         ) : (
           <div className="flex justify-center items-center">
-            <span className="text-gray-500 sm:w-24 text-center font-semibold">
+            <span className="text-gray-500 sm:w-24 w-16 sm:p-2 p-1 text-center font-semibold">
               Previous
             </span>
           </div>
@@ -40,13 +40,13 @@ export default function Pagination({ totalPages, hidePagination }: Pagination) {
         {currentPage < (totalPages || 0) ? (
           <Link
             href={createPageURL(currentPage + 1)}
-            className="sm:p-2 bg-blue-500 rounded sm:w-24 text-center"
+            className="p-1 sm:p2 bg-blue-500 rounded w-24 text-center"
           >
-            <span className="text-white font-semibold">Next</span>
+            <span className="text-white font-semibold text-md">Next</span>
           </Link>
         ) : (
           <div className="flex justify-center items-center">
-            <span className="text-gray-500 sm:w-24 text-center font-semibold">
+            <span className="p-1 sm:p2 text-gray-500 sm:w-24 w-16 text-center font-semibold">
               Next
             </span>
           </div>
