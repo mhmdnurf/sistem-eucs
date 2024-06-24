@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const hideNav = pathname === "/form" || pathname === "/login" ? "hidden" : "";
+  const isFormPage = pathname === "/form";
   return (
     <html lang="en">
       <head>
@@ -25,7 +25,7 @@ export default function RootLayout({
       </head>
       <body className={poppins.className}>
         <div className="lg:flex">
-          <SideNav hidden={hideNav} />
+          <SideNav hidden={isFormPage ? "hidden" : "lg:block"} />
           <div className="lg:h-full flex-grow overflow-auto">{children}</div>
           <div className="block lg:hidden">
             <BottomNav />

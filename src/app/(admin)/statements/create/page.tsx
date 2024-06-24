@@ -3,7 +3,7 @@
 import Header from "@/components/Header";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 interface Variabel {
   id: number;
@@ -12,7 +12,9 @@ interface Variabel {
 
 export default function Page() {
   const router = useRouter();
-  const [variabel, setVariabel] = React.useState<Variabel[]>([]);
+  const [variabel, setVariabel] = useState<Variabel[]>([]);
+  const [statement, setStatement] = useState("");
+  const [variabelId, setVariabelId] = useState("");
 
   async function fetchVariabels() {
     try {
@@ -25,17 +27,14 @@ export default function Page() {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchVariabels();
   }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.target as HTMLFormElement);
-    const statement = formData.get("statement") as string;
-    const variabel = formData.get("variabel_id") as string;
 
-    if (!statement || !variabel) {
+    if (!statement || !variabelId) {
       Swal.fire({
         icon: "error",
         title: "Validation Error!",
@@ -47,7 +46,7 @@ export default function Page() {
     try {
       const response = await fetch("/api/statements", {
         method: "POST",
-        body: JSON.stringify({ statement, variabel_id: variabel }),
+        body: JSON.stringify({ statement, variabel_id: variabelId }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -95,6 +94,8 @@ export default function Page() {
             type="text"
             id="statement"
             name="statement"
+            value={statement}
+            onChange={(e) => setStatement(e.target.value)}
             className="border-2 rounded-sm sm:p-4 p-2 focus:ring-1 focus:outline-none focus:transform focus:ring-slate-300"
           />
           <label
@@ -106,7 +107,10 @@ export default function Page() {
           <select
             className="sm:p-4 p-2 bg-white border-2 rounded-sm focus:ring-1 focus:outline-none focus:transform focus:ring-slate-300"
             name="variabel_id"
+            value={variabelId}
+            onChange={(e) => setVariabelId(e.target.value)}
           >
+            <option value="">Select Variabel</option>
             {variabel.map((variabel) => (
               <option key={variabel.id} value={variabel.id}>
                 {variabel.nama_variabel.charAt(0).toUpperCase() +
@@ -116,7 +120,8 @@ export default function Page() {
           </select>
           <button
             type="submit"
-            className="sm:mt-6 mt-4 bg-slate-700 sm:p-4 p-2 rounded-lg focus:ring-4 focus:transform focus:ring-slate-300"
+            disabled={!statement || !variabelId}
+            className="sm:mt-6 mt-4 bg-slate-700 sm:p-4 p-2 rounded-lg focus:ring-4 focus:transform focus:ring-slate-300 disabled:bg-slate-500"
           >
             <span className="text-lg text-white font-semibold">Submit</span>
           </button>

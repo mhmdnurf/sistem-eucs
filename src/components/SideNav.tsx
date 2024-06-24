@@ -15,7 +15,6 @@ type SideNav = {
 };
 
 export default function SideNav({ hidden }: SideNav) {
-  const router = useRouter();
   const pathname = usePathname();
 
   const isActive = (href: string) => {
@@ -26,7 +25,7 @@ export default function SideNav({ hidden }: SideNav) {
   };
   return (
     <div
-      className={`bg-blue-500 border-r h-screen sticky top-0 ${hidden} hidden lg:block`}
+      className={`bg-blue-500 border-r h-screen sticky top-0 ${hidden} hidden`}
     >
       <h1 className="text-center py-6 font-bold text-lg text-white">
         Sistem EUCS
