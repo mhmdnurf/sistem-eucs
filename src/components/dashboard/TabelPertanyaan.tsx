@@ -7,9 +7,10 @@ type TabelPertanyaan = {
   marginTop?: string;
   paddingVertical?: string;
   statements: Statements[];
-  totalPages: number;
-  currentPage: number;
-  ITEMS_PER_PAGE: number;
+  totalPages?: number;
+  currentPage?: number;
+  ITEMS_PER_PAGE?: number;
+  hidePagination?: string;
 };
 
 interface Statements {
@@ -27,6 +28,7 @@ export default async function TabelPertanyaan({
   totalPages,
   currentPage,
   ITEMS_PER_PAGE,
+  hidePagination,
 }: TabelPertanyaan) {
   return (
     <>
@@ -44,7 +46,7 @@ export default async function TabelPertanyaan({
             Lihat semua
           </Link>
         </div>
-        <Pagination totalPages={totalPages} />
+        <Pagination totalPages={totalPages} hidePagination={hidePagination} />
         <div className="overflow-x-auto">
           <table className={`w-full ${marginTop} mt-4`}>
             <thead>
@@ -59,15 +61,23 @@ export default async function TabelPertanyaan({
               {statements.map((item, index) => (
                 <tr key={index} className="border-b-2 border-slate-100">
                   <td className="p-4 text-slate-900">
-                    {" "}
-                    {(currentPage - 1) * ITEMS_PER_PAGE + index + 1}
+                    {currentPage && ITEMS_PER_PAGE !== undefined ? (
+                      <>{(currentPage - 1) * ITEMS_PER_PAGE + index + 1}</>
+                    ) : (
+                      <>{index + 1}</>
+                    )}
                   </td>
                   <td className="p-4 text-slate-900 sm:text-wrap text-nowrap">
                     {item.statement}
                   </td>
-                  <td className="p-4 text-slate-900">
-                    {item.nama_variabel.charAt(0).toUpperCase() +
-                      item.nama_variabel.slice(1)}
+                  <td className="p-4 text-slate-900 text-nowrap sm:text-wrap">
+                    {item.nama_variabel
+                      .split(" ")
+                      .map(
+                        (word: string) =>
+                          word.charAt(0).toUpperCase() + word.slice(1)
+                      )
+                      .join(" ")}
                   </td>
                   <td className="p-4 text-slate-900">
                     <Link

@@ -17,6 +17,7 @@ export default async function Home() {
         marginTop="sm:mt-6"
         paddingVertical="sm:py-6"
         statements={statements}
+        hidePagination="hidden"
       />
     </>
   );

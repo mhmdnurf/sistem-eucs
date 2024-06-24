@@ -36,9 +36,14 @@ export default async function Page() {
                   <td className="p-4 text-slate-900 text-center">
                     {index + 1}
                   </td>
-                  <td className="p-4 text-slate-900 text-center">
-                    {String(item.nama_variabel).charAt(0).toUpperCase() +
-                      String(item.nama_variabel).slice(1)}
+                  <td className="p-4 text-slate-900 text-nowrap sm:text-wrap">
+                    {String(item.nama_variabel)
+                      .split(" ")
+                      .map(
+                        (word: string) =>
+                          word.charAt(0).toUpperCase() + word.slice(1)
+                      )
+                      .join(" ")}
                   </td>
                   <td className="p-4 text-slate-900 text-center">{item.sts}</td>
                   <td className="p-4 text-slate-900 text-center">{item.ts}</td>

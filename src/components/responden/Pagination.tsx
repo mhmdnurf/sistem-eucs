@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
-export default function Pagination({ totalPages }: { totalPages: number }) {
+type Pagination = {
+  totalPages?: number;
+  hidePagination?: string;
+};
+
+export default function Pagination({ totalPages, hidePagination }: Pagination) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
@@ -16,7 +21,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
   return (
     <>
-      <div className="flex space-x-4 sm:mt-4">
+      <div className={`flex space-x-4 sm:mt-4 ${hidePagination}`}>
         {currentPage > 1 ? (
           <Link
             href={createPageURL(currentPage - 1)}
@@ -32,7 +37,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
           </div>
         )}
 
-        {currentPage < totalPages ? (
+        {currentPage < (totalPages || 0) ? (
           <Link
             href={createPageURL(currentPage + 1)}
             className="sm:p-2 bg-blue-500 rounded sm:w-24 text-center"
