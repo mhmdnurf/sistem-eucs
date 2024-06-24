@@ -1,14 +1,31 @@
 import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
 
-export async function fetchUsers() {
+const ITEMS_PER_PAGE = 5;
+
+export async function fetchUsers(currentPage: number) {
   noStore();
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
   try {
-    const data = await sql`SELECT * FROM users`;
+    const data =
+      await sql`SELECT * FROM users LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
     return data.rows;
   } catch (error) {
-    console.error("Database Error: ", error);
+    console.error("Error fetching users: ", error);
     throw new Error("Error fetching users");
+  }
+}
+
+export async function fetchUsersPages() {
+  noStore();
+
+  try {
+    const count = await sql`SELECT COUNT(*) FROM users`;
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+    return { totalPages, ITEMS_PER_PAGE };
+  } catch (error) {
+    console.error("Error fetching users pages: ", error);
+    throw new Error("Error fetching users pages");
   }
 }
 

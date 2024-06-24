@@ -31,7 +31,7 @@ export async function fetchStatementsWithVariabel(): Promise<Statements[]> {
     const data = await sql`
       SELECT statements.id, statements.statement, variabels.nama_variabel
       FROM statements
-      JOIN variabels ON statements.variabel_id = variabels.id
+      JOIN variabels ON statements.variabel_id = variabels.id LIMIT 10
     `;
     return data.rows as Statements[];
   } catch (error) {

@@ -1,10 +1,20 @@
 import Header from "@/components/Header";
-import { fetchUsers } from "@/lib/users/data";
+import { fetchUsers, fetchUsersPages } from "@/lib/users/data";
 import Link from "next/link";
-import { FaEye } from "react-icons/fa6";
+import { FaEye } from "react-icons/fa";
+import Pagination from "@/components/responden/Pagination";
 
-export default async function Page() {
-  const users = await fetchUsers();
+export default async function Page({
+  searchParams,
+}: {
+  searchParams?: {
+    page?: number;
+  };
+}) {
+  const currentPage = searchParams?.page || 1;
+  const users = await fetchUsers(currentPage);
+  const { totalPages, ITEMS_PER_PAGE } = await fetchUsersPages();
+
   return (
     <>
       <Header title="Daftar Responden" showButton="hidden" />
@@ -14,6 +24,7 @@ export default async function Page() {
             Tabel Responden
           </h1>
         </div>
+        <Pagination totalPages={totalPages} />
         <div className="overflow-x-auto">
           <table className="w-full mt-4">
             <thead>
@@ -26,9 +37,12 @@ export default async function Page() {
               </tr>
             </thead>
             <tbody>
-              {users.map((item, index) => (
-                <tr key={index} className="border-b-2 border-slate-100">
-                  <td className="p-4 text-slate-900">{index + 1}</td>
+              {users?.map((item, index) => (
+                <tr key={item.id} className="border-b-2 border-slate-100">
+                  <td className="p-4 text-slate-900">
+                    {" "}
+                    {(currentPage - 1) * ITEMS_PER_PAGE + index + 1}
+                  </td>
                   <td className="p-4 text-slate-900 sm:text-wrap text-nowrap">
                     {item.nim}
                   </td>
@@ -36,7 +50,13 @@ export default async function Page() {
                     {item.nama_lengkap}
                   </td>
                   <td className="p-4 text-slate-900 text-nowrap sm:text-wrap">
-                    {item.jurusan}
+                    {item.jurusan
+                      .split(" ")
+                      .map(
+                        (word: string) =>
+                          word.charAt(0).toUpperCase() + word.slice(1)
+                      )
+                      .join(" ")}
                   </td>
                   <td className="p-4 text-slate-900">
                     <Link
