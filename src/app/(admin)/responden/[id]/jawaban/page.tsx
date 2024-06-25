@@ -12,14 +12,14 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <>
       <Header title="Daftar Jawaban" showButton="hidden" />
-      <div className={`bg-white rounded-xl sm:px-6 sm:mb-8`}>
-        <div className="flex">
-          <h1 className="sm:text-2xl sm:font-semibold text-slate-900 opacity-75 mr-4">
+      <div className={`bg-white rounded-xl sm:px-6 px-4 mb-2 sm:mb-8`}>
+        <div className="flex items-center">
+          <h1 className="sm:text-2xl text-xl font-semibold text-slate-900 opacity-75 mr-4">
             Tabel Jawaban Responden
           </h1>
           <Link
             href="/responden"
-            className={`bg-blue-100 sm:p-2 rounded-lg opacity-85 font-medium text-slate-600 flex justify-center items-center hover:transition-all hover:scale-110 `}
+            className={`bg-blue-100 p-2 rounded-lg opacity-85 font-medium text-slate-600 flex justify-center items-center hover:transition-all hover:scale-110 `}
           >
             Kembali
           </Link>
@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             {responses.map((item, index) => (
               <tr key={index} className="border-b-2 border-slate-100">
                 <td className="p-4 text-slate-900">{index + 1}</td>
-                <td className="p-4 text-slate-900">
+                <td className="p-4 text-slate-900 text-nowrap sm:text-wrap">
                   {statements[index]?.statement}
                 </td>
                 <td className="p-4 text-slate-900 text-nowrap sm:text-wrap">
